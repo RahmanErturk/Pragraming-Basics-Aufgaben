@@ -123,3 +123,11 @@ console.log('Verbindung mit ' + bankName + " beendet");
 
 // Hier gibt es keinen Fehler
 console.log("Dauer der Transaktion " + transaktionsDauer + "s");
+
+
+
+const password = "abcdefgh";
+const min_Pass_Length = 8;
+const istPassSicher = password.length >= min_Pass_Length;
+
+console.log({istPassSicher})
