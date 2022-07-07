@@ -30,7 +30,7 @@ console.log(fünfArbeiterDauer)
 
 
 // Aufgabe D
-
+const nummer1 = 882 
 const gleichD = 882 / 14 * 12 / 2.3 * 999;
 
 console.log(gleichD)
