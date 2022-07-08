@@ -31,12 +31,12 @@ console.log({ergebnisA2})
 // A-3
 const colorA3 = "rgb(167, 249, 85)"
 const rotA3 = colorA3.substring(4, 7);
-const rotReduziertA3 = rotA3 - (rotA3 / 4);
+const rotReduziertA3 = rotA3 / 4;
 
 const gruenA3 = colorA3.substring(9, 12);
 
 const blauA3 = colorA3.substring(14, 16);
-const blauReduziertA3 = blauA3 - (blauA3 / 4);
+const blauReduziertA3 = blauA3 / 4;
 
 const ergebnisA3 = `rot: ${parseInt(rotReduziertA3)} grün: ${parseInt(gruenA3)} blau: ${parseInt(blauReduziertA3)}`;
 console.log({ergebnisA3});
@@ -83,11 +83,12 @@ const rotB3Hex = rotB3.toString(16);
 
 const gruenB3 = 13;
 const gruenB3Hex = gruenB3.toString(16)
+const gruenB3HexPads = gruenB3Hex.padStart(2, "0")
 
 const blauB3 = 218;
 const blauB3Hex = blauB3.toString(16)
 
-const ergebnisB3 = "#" + `${rotB3Hex}${gruenB3Hex}${blauB3Hex}`;
+const ergebnisB3 = "#" + `${rotB3Hex}${gruenB3HexPads}${blauB3Hex}`;
 console.log({ergebnisB3});
 
 // B-4
@@ -135,12 +136,13 @@ const rotC2Hex = rotC2.toString(16);
 const gruenC2 = 31;
 const gruenC2Reduzirt = 31 - 31;
 const gruenC2ReduziertHex = gruenC2Reduzirt.toString(16);
+const gruenC2ReduziertHexPads = gruenC2ReduziertHex.padStart(2, "0")
 
 const blauC2 = 242;
 const blauC2Reduziert = 242 - 200;
 const blauC2ReduziertHex = blauC2Reduziert.toString(16);
 
-const ergebnisC2 = "#" + `${rotC2Hex}${gruenC2ReduziertHex}${blauC2ReduziertHex}`;
+const ergebnisC2 = "#" + `${rotC2Hex}${gruenC2ReduziertHexPads}${blauC2ReduziertHex}`;
 console.log({ergebnisC2});
 
 // C-3
@@ -173,20 +175,23 @@ const ergebnisC4 = "rgb" + "(" + `${parseInt(rotC4RgbSteigert)}, ${parseInt(grue
 console.log({ergebnisC4});
 
 
-// C-4
+// C-5
 
 const colorC5 = "rgb(165, 21, 50)";
 
 const rotC5 = 165;
-const rotC5Reduzirt = rotC5 - parseInt(rotC5 / 4);
-const rotC5ReduziertHex = rotC5Reduzirt.toString(16);
+const rotC5Reduzirt = rotC5 / 4;
+const rotC5ReduziertHex = parseInt(rotC5Reduzirt).toString(16);
 
 const gruenC5 = 21;
 const gruenC5Hex = gruenC5.toString(16);
 
 const blauC5 = 50;
-const blauC5Reduziert = blauC5 - parseInt(blauC5 / 4);
-const blauC5ReduziertHex = blauC5Reduziert.toString(16);
+const blauC5Reduziert = blauC5 / 4;
+const blauC5ReduziertHex = parseInt(blauC5Reduziert).toString(16);
+const blauC5ReduziertHexPads = blauC5ReduziertHex.padStart(2, "0")
 
-const ergebnisC5 = "#" + `${rotC5ReduziertHex}${gruenC5Hex}${blauC5ReduziertHex}`;
+const ergebnisC5 = "#" + `${rotC5ReduziertHex}${gruenC5Hex}${blauC5ReduziertHexPads}`;
 console.log({ergebnisC5});
+
+

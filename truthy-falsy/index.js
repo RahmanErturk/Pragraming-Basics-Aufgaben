@@ -37,9 +37,9 @@ if (c == true) {
 
 //--------------------------------------------------------------------
 
-const d = "rahman";
+const d = "Rahman";
 
-if (!!d == true) {
+if (!!d === true) {
     console.log("Hi! Rahman");
 }else {
     console.log("Sorry, Rahman");
