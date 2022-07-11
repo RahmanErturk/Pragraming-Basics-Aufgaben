@@ -71,3 +71,16 @@ console.log(testZiffernSystem);
 console.log(testZiffernSystem.toString()); // decimal-system = 205
 console.log(testZiffernSystem.toString(2)); // binary-system = 11001101
 console.log(testZiffernSystem.toString(16)); // hexedecimal-system = cd
+
+// -----------------------------------------------------------------
+
+const str1 = "110101";
+const str2 = "101"
+const length = 20;
+
+const paddedStr1 = str1.padStart(length, "muster");
+const paddedStr2 = str2.padStart(length, "_*+/-_");
+
+console.log(paddedStr1);
+console.log(paddedStr2);  // Man kann mit padStart oder padEnd eine bestimmte Lange bestimmen und die leere Teile von dieser Lange mit den gewünschten Character auffüllen.
+// MAn kann padStart und padEnd nur mit String benutzen.
