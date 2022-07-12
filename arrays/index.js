@@ -135,7 +135,7 @@ console.log({someCitiesInAsia});
 
 // array.join(", + *") => Adds all the elements of an array into a string, separated by the specified separator string.
 
-console.log(asianCities.join(" , "));
+console.log(asianCities.join(", "));
 
 
 // Dieses Codeblock zig uns, was jedes Element ist und die index von diesem Element und gesamtes Array ist 
