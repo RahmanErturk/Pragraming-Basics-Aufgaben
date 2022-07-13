@@ -43,6 +43,17 @@ for (i = 0; i < randomNumbers.length; i++){
 
 console.log(`Es gibt ${loesung_1.length} Zahlen unter 50.`);
 
+// Alternative Lösung:
+
+// let loesung_1 = 0;
+// for (i = 0; i < randomNumbers.length; i++){
+//     if(randomNumbers[i] < 50) {
+//         loesung_1++;     
+//     }
+// }
+
+// console.log(`Es gibt ${loesung_1} Zahlen unter 50.`);
+
 // --------------------------------------------------------------------------
 console.log("------------------------------------------------------")
 // --------------------------------------------------------------------------
@@ -58,26 +69,31 @@ console.log("------------------------------------------------------")
 
 // Teste deinen Algorithmus mit den Anzahlen 10, 20, 100 und beliebig vielen weiteren.
 
-let loesung_2 = [];
+const loesung_2 = [];
+const loesung_3 = Array()
 for (i = 0; i < randomNumbers.length; i++){
     if(randomNumbers[i] < 50) {
         loesung_2.push(randomNumbers[i]);      
+    } else {
+        loesung_3.push(randomNumbers[i]);
     }
 }
 console.log("Zahlen unter 50:", loesung_2);
-
-// --------------------------------------------------------------------------
-console.log("------------------------------------------------------")
-// --------------------------------------------------------------------------
-
-let loesung_3 = Array()
-for (i = 0; i < randomNumbers.length; i++){
-    if(randomNumbers[i] >= 50) {
-        loesung_3.push(randomNumbers[i]);      
-    }
-}
 console.log("Zahlen größer oder gleich 50:", loesung_3);
 
 // --------------------------------------------------------------------------
 console.log("------------------------------------------------------")
 // --------------------------------------------------------------------------
+
+// let loesung_3 = Array()
+// for (i = 0; i < randomNumbers.length; i++){
+//     if(randomNumbers[i] >= 50) {
+//         loesung_3.push(randomNumbers[i]);      
+//     }
+// }
+// console.log("Zahlen größer oder gleich 50:", loesung_3);
+
+// // --------------------------------------------------------------------------
+// console.log("------------------------------------------------------")
+// // --------------------------------------------------------------------------
+
