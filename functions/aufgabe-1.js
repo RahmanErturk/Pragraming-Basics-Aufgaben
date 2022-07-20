@@ -1,18 +1,20 @@
 // Deklariere eine Funktion mit dem Namen istGeradeZahl, welche einen Parameter zahl erhält und einen Boolean zurück gibt. Der Boolean soll true sein wenn die Zahl gerade ist und false wenn sie nicht gerade ist. Führe zum Schluss den folgenden Code aus und überprüfe dein Ergebnis:
 
+const gerade = 3
 
+function istGeradeZahl(abc) {
 
-function istGeradeZahl(zahl) {
-    
-    const gerade = zahl % 2 === 0;
+    console.log(abc % 2 === 0);
 
-    return gerade;
 }
+
+istGeradeZahl(4)
+
 
 // kürzer version
-function istGeradeZahl2 (zahl) {
-    return zahl % 2 === 0;
-}
+// function istGeradeZahl2 (zahl) {
+//     return zahl % 2 === 0;
+// }
 
 //länger verion
 
@@ -33,7 +35,7 @@ function istGeradeZahl2 (zahl) {
 // }
 
 
-console.log(istGeradeZahl(3),"soll false sein");
-console.log(istGeradeZahl(10),"soll true sein");
-console.log(istGeradeZahl(7),"soll false sein");
-console.log(istGeradeZahl(40),"soll true sein");
+// console.log(istGeradeZahl(3),"soll false sein");
+// console.log(istGeradeZahl(10),"soll true sein");
+// console.log(istGeradeZahl(7),"soll false sein");
+// console.log(istGeradeZahl(40),"soll true sein");

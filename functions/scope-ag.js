@@ -8,7 +8,7 @@ console.log("----------- Aufgabe -----------")
 
 const text1 = "Authoritatively incentivize excellent alignments whereas sources rapidiously.";
 const text2 = "Rapidiously incubate enterprise architectures for covalent expertise. Completely deliver cross-media core competencies through extensive technologies.";
-const text3 = "Progressively repurpose best-of-breed markets whereas functional value. Collaboratively incubate multifunctional core competencies and mission-critical manufactured products. Uniquely restore progressive bandwidth rather than timely initiatives. Interactively exploit client-centric e-business without convergence. Intrinsicly brand open-source infomediaries vis-a-vis economically sound expertise.";
+const text3 = "Progressively repurpose best-of-breed markets whereas functional value. Collaboratively incubate multifunctional core competencies and mission-critical manufactured products. Uniquely restore progressive bandwidth rather than timely initiatives. Interactively exploit client-centric e-business without convergence. Intrinsicly ";
 
 const array = [1, 2, 3, 4, 5, 6];
 
@@ -32,38 +32,58 @@ console.log("Frage-1:", aufgabe1(text1));
 console.log("--------------------------------------")
 // ------------------------------------------------------------------
 
-function aufgabe2(myText){
-  if(typeof myText !== "string"){
-    return "Invalides Argument! Es muss ein String übergeben werden!"
-  }
-  let paragraph = myText.split(" ")
-  paragraph = paragraph.slice(0, 29).join(" ") + "...";
+// function aufgabe2(myText){
+//   if(typeof myText !== "string"){
+//     return "Invalides Argument! Es muss ein String übergeben werden!"
+//   }
+  
+//   let paragraph = myText.split(" ")
+//   if (paragraph.length > 30) {
+//     paragraph = paragraph.slice(0, 29).join(" ") + "...";
 
-  return paragraph;
+//     return paragraph;
+//   }
+
+//   return myText
+// }
+
+// console.log("Frage-2", aufgabe2(text3));
+
+// Alternative Lösung
+function aufgabe2(myText) {
+  const maxLength = 30;
+  const paragraph = myText.split(" ");
+  return paragraph.splice(0, maxLength).join(" ") + (paragraph.length > maxLength ? "..." : "");
 }
 
-console.log("Frage-2", aufgabe2(array));
+console.log("Frage-2", aufgabe2(text3));
 
 // ------------------------------------------------------------------
 console.log("--------------------------------------")
 // ------------------------------------------------------------------
 
-function aufgabe3(myText){
-  if(typeof myText !== "string"){
-    return "Invalides Argument! Es muss ein String übergeben werden!"
-  }
-  let paragraph = myText.split(" ")
-    for (let i = 0; i < paragraph.length; i++){
-      paragraph[i] = paragraph[i][0].toUpperCase() + paragraph[i].slice(1)
-    }
-    paragraph = paragraph.slice(0, 29).join(" ") + "...";
-    return paragraph;
-}
+// function aufgabe3(myText){
+//   if(typeof myText !== "string"){
+//     return "Invalides Argument! Es muss ein String übergeben werden!"
+//   }
+//   let paragraph = myText.split(" ")
+//     for (let i = 0; i < paragraph.length; i++){
+//       paragraph[i] = paragraph[i][0].toUpperCase() + paragraph[i].slice(1)
+     
+//     }
+  
+//     if (paragraph.length > 30) {
+//       paragraph = paragraph.slice(0, 29).join(" ") + "...";
+  
+//       return paragraph;
+//     }
 
-console.log("Frage-3", aufgabe3(number));
+//     return paragraph.join(" ")
+// }
+
+console.log("Frage-3", aufgabe1(aufgabe2(text3)));
 
 // ------------------------------------------------------------------
 console.log("--------------------------------------")
 // ------------------------------------------------------------------
-
 
