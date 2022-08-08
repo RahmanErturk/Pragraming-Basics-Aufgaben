@@ -23,7 +23,7 @@ function theLongestString(str1, str2, str3){
 function searchWord(word){
     const arrayText = text3.split(" ");
      
-    return arrayText.filter(countOfWord => countOfWord === word).length
+    return arrayText.filter(countOfWord => countOfWord === word).length;
 }
 
 // console.log(searchWord("exploit"))
@@ -32,4 +32,14 @@ function searchWord(word){
 
 
 
+function reversedText(str) {
+    const arrayStr = str.split(" ");
+    const arrayReversed = [];
+    for (let i = 0; i < arrayStr.length; i++){
+        arrayReversed.push(arrayStr[i].split("").reverse().join(""));
+    }
+    return arrayReversed.join(" ");
+}
+
+console.log(reversedText(text1));
 

@@ -76,7 +76,7 @@ const cards = ["2 Pik","3 Pik","4 Pik","5 Pik","6 Pik", "7 Pik", "8 Pik", "9 Pik
 const shuffledCards = [];
 
 function shuffleCards(myCard) {
-    for (let i = myCard.length + 1; i > 0; i--) {
+    for (let i = myCard.length; i > 0; i--) {
         const indexNum = parseInt(Math.random()*(myCard.length));
         // console.log(indexNo);
         shuffledCards.push(myCard.splice(indexNum, 1).join(""));
@@ -89,7 +89,7 @@ console.log(shuffleCards(cards));
 
 function getCard(myCard) {
     
-    for (let i = myCard.length + 1; i > 0; i--) {
+    for (let i = myCard.length; i >= 0; i--) {
         if(myCard.length > 0){
             const indexNo = parseInt(Math.random()*(myCard.length));
             // console.log(indexNo);
@@ -103,8 +103,12 @@ function getCard(myCard) {
 };
 console.log(getCard(shuffledCards));
 
+
+
 // Bonus:
 // Implementiere eine Funktion mit dem Namen shuffleCards welche die Karten im Array cards mischt.
+
+console.log("----------------- Frage 2 ------------------")
 
 // Aufgabe 2 (Passwort Generator)
 // Implementiere eine Funktion mit dem Namen createPassword welche ein zufällig erzeugtes Passwort zurückgibt.
@@ -117,8 +121,24 @@ console.log(getCard(shuffledCards));
 
 
 
+const capitalLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+const smallLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+const specialCharacters = ["@", "!", "$", "%", "&", "*"];
+const allCharacters = (capitalLetters + smallLetters + numbers + specialCharacters).replaceAll(/,/g, '');
+// console.log(allCharacters);
+// console.log(allCharacters.length);
 
 
+function createPassword(myPass){
+    const myPassword = [];
+    for(let i=0; i < 5; i++){
+        myPassword.push(myPass[parseInt(Math.random()*(myPass.length))]);
+    };
+    myPassword.splice(myPass[parseInt(Math.random()*(myPass.length))], 1, capitalLetters[parseInt(Math.random()*(capitalLetters.length))],smallLetters[parseInt(Math.random()*(smallLetters.length))], numbers[parseInt(Math.random()*(numbers.length))], specialCharacters[parseInt(Math.random()*(specialCharacters.length))]);
+    return myPassword.join("");
+};
+console.log(createPassword(allCharacters));
 
 
 
