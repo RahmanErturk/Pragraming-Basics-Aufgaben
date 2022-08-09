@@ -2,7 +2,7 @@
 
 // Aufgabe: Color Analyzer
 
-const color = "abc";
+const color = "blue";
 
 switch (color) {
   case "red":

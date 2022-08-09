@@ -29,10 +29,15 @@ console.timeEnd("test 2");
 
 // ---------------------------------------------------------------
 
+
+
+
 const color = "rgb(255, 127, 0)";
 
 // => rot: 255, grün: 127, blau: 0
 console.log("rot; ", color.substring(4, 7), "grün: ", color.substring(9, 12), "blau: ", color.substring(14, 15));
+
+
 console.log(`rot: 255, grün: 127, blau: 0`);
 console.log(`rot: ${color.substring(4, 7)}, grün: ${color.substring(9, 12)}, blau: ${color.substring(14, 15)}`);
 

@@ -108,7 +108,7 @@ for (let i = 0; i < 3; i++){
 console.log(result7_6);
 
 // 8
-let wordToCheck = "abcdedcba";
+let wordToCheck = "madam";
 let reversedWord = "";
 for (let i = wordToCheck.length - 1; i >= 0; i--) {
   reversedWord += wordToCheck[i];
