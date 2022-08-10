@@ -138,7 +138,7 @@ function createPassword(myPass){
     myPassword.splice(myPass[parseInt(Math.random()*(myPass.length))], 1, capitalLetters[parseInt(Math.random()*(capitalLetters.length))],smallLetters[parseInt(Math.random()*(smallLetters.length))], numbers[parseInt(Math.random()*(numbers.length))], specialCharacters[parseInt(Math.random()*(specialCharacters.length))]);
     return myPassword.join("");
 };
-console.log(createPassword(allCharacters));
+// console.log(createPassword(allCharacters));
 
 
 
@@ -161,3 +161,28 @@ console.log(createPassword(allCharacters));
 //       ...b.filter((x) => !a.includes(x)),
 //     ];
 // }
+
+function symmetricDifference(arr1, arr2) {
+    const diffArr = [];
+    
+        for(let i = 0; i < arr1.length; i++){
+            if(!arr2.includes(arr1[i])){
+                diffArr.push(arr1[i])
+            }
+        }
+        for(let j = 0; j < arr2.length; j++){
+            if(!arr1.includes(arr2[j])){
+                diffArr.push(arr2[j])
+            }
+        }
+        // const newArr = []
+        // for(let k = 0; k < diffArr.length; k++){
+        //     for(let l = 0; l < diffArr.length; l++)
+        //         if(diffArr[l] !== diffArr[k]){
+        //         newArr.push(diffArr[k]);
+        //     }  
+        // }
+        return diffArr
+}
+
+console.log(symmetricDifference([1, 2, 3, 3], [5, 2, 1, 4]));
