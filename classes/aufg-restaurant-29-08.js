@@ -1,106 +1,125 @@
-// Das digitale Restaurant
-// ------
-// Wir programmieren uns ein Restaurant! Das Restaurant verfügt über eine Speisekarte, kann geöffnet oder geschlossen werden und führt eine Kasse mit ein wenig Wechselgeld zu Beginn. Über das Geld in der Kasse wird das Personal bezahlt, sobald das Restaurant schließt.
-// Benötigt werden außerdem folgende Personengruppen: Gäste, Kellner, Köche (und Barkeeper). Gäste sollen Speisen und Getränke bestellen können, die von Kellnern aufgenommen und an Köche (und Barkeeper) weitergegeben werden. Köche (und Barkeeper) können Bestellungen von Kellnern erhalten und sie zubereiten. Nach der Zubereitung bringen Kellner die Speisen und Getränke zu den Gästen. Nach dem Essen bezahlen Gäste an Kellner. Zum Schluss bekommen Kellner und Köche (und Barkeeper) ihren Lohn.
+/*
+Wir programmieren uns ein Restaurant! Das Restaurant verfügt über eine Speisekarte, kann geöffnet oder geschlossen werden und führt eine Kasse mit ein wenig Wechselgeld zu Beginn. Über das Geld in der Kasse wird das Personal bezahlt, sobald das Restaurant schließt.
 
-const speisekarte = [
-  { suppe: 5 },
-  { gemischteGrillteller: 15 },
-  { dönertasche: 6 },
-  { pomDönner: 6 },
-  { kebap: 13 },
-  { vorspeise: 4 },
-  { getränke: 3 },
-];
-
-// function getRandom(arr) {
-//   return Math.floor(Math.random() * arr.length);
-// }
-
-// class Restaurant {
-//   constructor(ourSpeisekarte) {
-//     this.ourSpeisekarte = ourSpeisekarte;
-//     this.kasse = 30;
-//   }
-//   open() {
-//     return this.isOpen = true;
-//   }
-//   closed() {
-//     return this.isOpen = false;
-//   }
-// }
-
-// class Person {
-//     constructor(name) {
-//       this.name = name;
-//     }
-// }
-// class Gast extends Person {
-//   constructor(...args) {
-//     super(...args);
-//   }
-//   makeOrder(restaurant) {
-//     const index = getRandom(restaurant.ourSpeisekarte);
-
-//     const getRandomSpeise = restaurant.ourSpeisekarte[index];
-
-//     restaurant.kasse += Object.values(getRandomSpeise)[0];
-//     console.log(getRandomSpeise);
-//   }
-// }
-
-// const erKebapHaus = new Restaurant(speisekarte);
-// console.log(erKebapHaus);
-
-// console.log(erKebapHaus.open());
-
-// const ourGast = new Gast("Rahman");
-// console.log(ourGast);
-// ourGast.makeOrder(erKebapHaus);
-
-// console.log(erKebapHaus);
+Benötigt werden außerdem folgende Personengruppen: Gäste, Kellner, Köche (und Barkeeper). Gäste sollen Speisen und Getränke bestellen können, die von Kellnern aufgenommen und an Köche (und Barkeeper) weitergegeben werden. Köche (und Barkeeper) können Bestellungen von Kellnern erhalten und sie zubereiten. Nach der Zubereitung bringen Kellner die Speisen und Getränke zu den Gästen. Nach dem Essen bezahlen Gäste an Kellner. Zum Schluss bekommen Kellner und Köche (und Barkeeper) ihren Lohn.
+*/
 
 // Restaurant
-// + Speisekarte
-// + geöffnet/geschlossen
-// + Kasse
-// - Personal bezahlen
+// ---------------------------------------------------------------------------------
 class Restaurant {
-  constructor(speisekarte, kassenbestand) {
-    this.speisekarte = speisekarte;
-    this.kasse = kassenbestand;
+  constructor() {
+    this.speisekarte = [
+      {
+        name: "Pizza",
+        preis: 12,
+      },
+      {
+        name: "Pasta",
+        preis: 9,
+      },
+      {
+        name: "Salat",
+        preis: 7,
+      },
+      {
+        name: "Eis",
+        preis: 8,
+      },
+    ];
+    this.kasse = 50;
+    this.mitarbeiter = [];
     this.geoeffnet = false;
+    this.bestellungen = [];
   }
-  bestellungen() {
-    this.bestellung = [];
+
+  mitarbeiterHinzufuegen(mitarbeiter) {
+    this.mitarbeiter.push(mitarbeiter);
+  }
+
+  ueberrascheMich() {
+    return this.speisekarte[
+      Math.floor(Math.random() * this.speisekarte.length)
+    ];
+  }
+
+  bestellungRegistrieren(bestellung) {
+    this.bestellungen.push(bestellung);
+  }
+
+  bestellungenArchivieren() {
+    this.bestellungen = [];
+  }
+
+  kassieren(bestellung) {
+    this.kasse += bestellung.speise.preis;
   }
 
   personalBezahlen() {
-    // ...
+    const lohn = 60;
+    if (this.kasse < this.mitarbeiter.length * lohn)
+      return console.error(
+        "Nicht genug Geld in der Kasse, um alle Mitarbeiter zu bezahlen!"
+      );
+    this.mitarbeiter.forEach((mitarbeiter) => {
+      mitarbeiter.lohnErhalten(lohn);
+      this.kasse -= lohn;
+    });
   }
 
   oeffnen() {
+    if (this.mitarbeiter.length <= 0)
+      return console.error("Kann nicht geöffnet werden. Keiner da!");
     this.geoeffnet = true;
   }
 
   schliessen() {
+    if (this.bestellungen.find((bestellung) => !bestellung.abgerechnet))
+      return console.error(
+        "Kann nicht schließen, es müssen noch Bestellungen abgerechnet werden!"
+      );
+    this.personalBezahlen();
+    this.bestellungenArchivieren();
     this.geoeffnet = false;
-  }
-
-  // DEBUG --------
-  status() {
-    console.log("geöffnet?", this.geoeffnet);
   }
 }
 
-const restaurant = new Restaurant(speisekarte, 0);
-console.log(restaurant);
+// Bestellung
+// ---------------------------------------------------------------------------------
+class Bestellung {
+  constructor(gast, speise) {
+    this.gast = gast;
+    this.speise = speise;
+    this.zubereitet = false;
+    this.serviert = false;
+    this.abgerechnet = false;
+  }
+
+  zubereiten() {
+    this.zubereitet = true;
+  }
+
+  servieren() {
+    if (!this.zubereitet)
+      return console.error(
+        "Kann noch nicht serviert werden: Die Bestellung wurde noch nicht zubereitet!"
+      );
+    this.serviert = true;
+  }
+
+  abrechnen() {
+    if (!this.serviert)
+      return console.error(
+        "Kann noch nicht abgerechnet werden: Die Bestellung wurde noch nicht serviert!"
+      );
+    this.abgerechnet = true;
+  }
+}
 
 // Personal
-// + Anfangswert ausgezahlter Lohn: 0€
-// - Lohn erhalten
+// ---------------------------------------------------------------------------------
 class Personal {
-  constructor() {
+  constructor(restaurant) {
+    this.restaurant = restaurant;
     this.lohn = 0;
   }
 
@@ -109,81 +128,143 @@ class Personal {
   }
 }
 
-const personal = new Personal();
-console.log(personal);
-personal.lohnErhalten(100);
-console.log(personal);
-
-// Koch (erbt von Personal)
-// - Bestellung erhalten
-// - Bestellung zubereiten
-// class Koch extends Personal {
-//   constructor(restaurant) {
-//     this.restaurant = restaurant;
-//   }
-//   bestellungErhalten(gericht) {
-//     console.log("Bestellung erhalten:", gericht);
-//   }
-// }
-// const koch = new Koch()
-
-// Kellner (erbt von Personal)
-// - Bestellung aufnehmen
-// - Bestellung weitergeben
-// - Bestellung ausgeben
-// - abkassieren
-class Kellner extends Personal {
-  constructor(restaurant) {
-    super(restaurant);
-    this.restaurant = restaurant;
-  }
-
-  bestellungAufnehmen(gericht) {
-    console.log("Bestellung aufgenommen:", gericht);
-    // ...
-  }
-
-  bestellungWeitergeben(gericht) {
-    this.restaurant.bestellungen.push(gericht);
-  }
-
-  bestellungAusgeben() {
-    // ...
-  }
-
-  abkassieren(gericht) {
-    console.log("Bestellung abgerechnet:", gericht);
-    // ...
+// Koch
+// ---------------------------------------------------------------------------------
+class Koch extends Personal {
+  bestellungZubereiten() {
+    const bestellung = this.restaurant.bestellungen.find(
+      (bestellung) => !bestellung.zubereitet
+    );
+    if (!bestellung) return console.log("Keine Bestellung mehr zuzubereiten.");
+    bestellung.zubereiten();
+    console.log(`${bestellung.speise.name} ist fertig!`);
   }
 }
-const kellner = new Kellner();
-kellner.bestellungWeitergeben()
-console.log(restaurant.bestellungen())
+
+// Kellner
+// ---------------------------------------------------------------------------------
+class Kellner extends Personal {
+  bestellungAufnehmen(gast, speise) {
+    const bestellung = new Bestellung(gast, speise);
+    this.restaurant.bestellungRegistrieren(bestellung);
+    console.log(`${speise.name}, kommt sofort, ${gast.name}!`);
+  }
+
+  bestellungServieren() {
+    const bestellung = this.restaurant.bestellungen.find(
+      (bestellung) => bestellung.zubereitet && !bestellung.serviert
+    );
+    if (!bestellung) return console.log("Keine Bestellung mehr zu servieren.");
+    bestellung.servieren();
+    console.log("Guten Appetit!");
+  }
+
+  bestellungAbrechnen(gast) {
+    const bestellung = this.restaurant.bestellungen.find(
+      (bestellung) => bestellung.gast === gast
+    );
+    if (!bestellung)
+      return console.log("Sie haben keine Bestellung mehr offen.");
+    restaurant.kassieren(bestellung);
+    bestellung.abrechnen();
+    console.log(`Vielen Dank für Ihren Besuch, ${gast.name}!`);
+  }
+}
 
 // Gast
-// - bestellen
-// - bezahlen
+// ---------------------------------------------------------------------------------
 class Gast {
-  constructor(kellner) {
+  constructor(name, restaurant, kellner) {
+    this.name = name;
+    this.restaurant = restaurant;
     this.kellner = kellner;
   }
 
-  bestellen() {
-    this.gericht = speisekarte[Math.floor(Math.random() * speisekarte.length)];
-    this.kellner.bestellungAufnehmen(this.gericht);
+  bestellen(speise) {
+    this.kellner.bestellungAufnehmen(this, speise);
   }
 
   bezahlen() {
-    console.log(`zu bezahlen: ${Object.values(this.gericht)[0]}€`);
-    this.kellner.abkassieren(this.gericht);
+    this.kellner.bestellungAbrechnen(this);
   }
 }
 
-const gast1 = new Gast(kellner);
-const gast2 = new Gast(kellner);
+// ---------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------
+const restaurant = new Restaurant();
 
-gast1.bestellen();
-gast2.bestellen();
+const kellner1 = new Kellner(restaurant);
+const koch1 = new Koch(restaurant);
 
-gast1.bezahlen();
-gast2.bezahlen();
+restaurant.mitarbeiterHinzufuegen(kellner1);
+restaurant.mitarbeiterHinzufuegen(koch1);
+
+function simuliereTag(restaurant, kellner, koch, tag = 1) {
+  console.log();
+  console.log("================");
+  console.log(`Tag ${tag} - Auf geht's!`);
+  console.log("================");
+  console.log();
+
+  restaurant.oeffnen();
+
+  const sitzplaetze = Array(parseInt(Math.random() * 25) + 5).fill();
+  const gaeste = sitzplaetze.map(
+    (_, index) => new Gast(`Gast ${index + 1}`, restaurant, kellner)
+  );
+
+  // bestellen
+  gaeste.forEach((gast) => gast.bestellen(restaurant.ueberrascheMich()));
+  // zubereiten
+  restaurant.bestellungen.forEach((_) => koch.bestellungZubereiten());
+  // servieren
+  restaurant.bestellungen.forEach((_) => kellner.bestellungServieren());
+  // abrechnen
+  gaeste.forEach((gast) => gast.bezahlen());
+
+  restaurant.schliessen();
+
+  console.log();
+  console.log("================");
+  console.log(`Tag ${tag} - Feierabend!`);
+  console.log("----------------");
+  console.log(restaurant);
+  console.log("================");
+  console.log();
+}
+
+const simulierteTage = 1;
+for (let tag = 1; tag <= simulierteTage; tag++) {
+  simuliereTag(restaurant, kellner1, koch1, tag);
+}
+// ---------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------
+
+// console.log();
+// console.log("================");
+// console.log("Auf geht's!");
+// console.log("----------------");
+// console.log(restaurant);
+// console.log("================");
+// console.log();
+
+// restaurant.oeffnen();
+
+// const gast1 = new Gast("Gast 1", restaurant, kellner1);
+
+// gast1.bestellen(restaurant.ueberrascheMich());
+// koch1.bestellungZubereiten();
+// kellner1.bestellungServieren();
+// gast1.bezahlen();
+
+// restaurant.schliessen();
+
+// console.log();
+// console.log("================");
+// console.log("Feierabend!");
+// console.log("----------------");
+// console.log(restaurant);
+// console.log("================");
+// console.log();
