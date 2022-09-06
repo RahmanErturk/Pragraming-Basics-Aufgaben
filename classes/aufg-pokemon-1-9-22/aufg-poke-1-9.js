@@ -48,7 +48,7 @@ class Pokemon {
       console.log(`${this.name} ist bereits tot!`);
     }
   }
-  getMagic(addMAg) {
+  getMagic() {
     this.magie += 20;
     console.log(`${this.name} hat 20 Magie zurückbekommen`);
   }
